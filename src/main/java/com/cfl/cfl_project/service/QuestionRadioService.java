@@ -6,5 +6,8 @@ import org.springframework.stereotype.Service;
 @Service
 public interface QuestionRadioService {
     QuestionRadio create(QuestionRadio questionRadio);
-    QuestionRadio getByEmpIdAndQuarter(Long empId,String quarter);
+
+    QuestionRadio getByEmpId(Long empId);
+
+//    QuestionRadio getByEmpIdAndQuarter(Long empId,String quarter);
 }

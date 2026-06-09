@@ -1,7 +1,6 @@
 package com.cfl.cfl_project.service;
 
 import com.cfl.cfl_project.model.RewardsAndRecognition;
-import com.cfl.cfl_project.model.RewardsRecognitionDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,11 +12,13 @@ public interface RewardsAndRecognitionService {
 
     RewardsAndRecognition create(String rewardsPersonName, String messagedPersonName, String message, MultipartFile file) throws IOException;
 
-    RewardsAndRecognition getByRewardsPersonName(String rewardsPersonName);
+   // RewardsAndRecognition getByRewardsPersonName(String rewardsPersonName);
 
-    List<RewardsRecognitionDTO> getByRewardsAndRecognitionType(String rewardsRecognitionType);
+   // List<RewardsRecognitionDTO> getByRewardsAndRecognitionType(String rewardsRecognitionType);
+    List<RewardsAndRecognition> getByRewardsAndRecognitionByType(String rewardsRecognitionType);
 
 
     RewardsAndRecognition createBravo(String rewardsPersonName, String messagedPersonName, String message, MultipartFile file) throws IOException;
 
+    List<String> listOfCfl(String year);
 }

@@ -1,10 +1,14 @@
 package com.cfl.cfl_project.controller;
 
+import com.cfl.cfl_project.dto.CflProbationConfirmationCflTableDTO;
+import com.cfl.cfl_project.dto.CflSkillCflTableDTO;
 import com.cfl.cfl_project.model.ProbationConfirmation;
 import com.cfl.cfl_project.service.ProbationConfirmationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/probationConfirmation")
@@ -38,4 +42,40 @@ public class ProbationConfirmationController {
             return ResponseEntity.status(400).body("Failed to get Probation Confirmation");
         }
     }
+
+
+    @GetMapping("/getAllProbationConfirmationReport")
+    public ResponseEntity<?> getAllProbationConfirmationReport(){
+        List<CflProbationConfirmationCflTableDTO> cflProbationConfirmationCflTableDTOs=probationConfirmationService.cflProbationConfirmationCflTableDTOs();
+        if(!cflProbationConfirmationCflTableDTOs.isEmpty()){
+            return ResponseEntity.ok(cflProbationConfirmationCflTableDTOs);
+        }
+        else{
+            return ResponseEntity.status(400).body("Failed to get all cflProbationConfirmationCflTableDTOs ");
+        }
+    }
+
+
+    @GetMapping("/getAllProbationConfirmationStatus/{year}")
+    public ResponseEntity<?> findAllProbationStatusByYear(@PathVariable Long year) {
+        List<ProbationConfirmation>probationConfirmationList=probationConfirmationService.findAllProbationStatusByYear(year);
+        if(!probationConfirmationList.isEmpty()){
+            return ResponseEntity.ok(probationConfirmationList);
+        }
+        else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+    @PostMapping("/editProbation/{empId}")
+    public ResponseEntity<?> editProbationConfirmation(@PathVariable Long empId) {
+        ProbationConfirmation probationConfirmation=probationConfirmationService.editProbationConfirmation(empId);
+        return probationConfirmation !=null ? ResponseEntity.ok(probationConfirmation) : ResponseEntity.notFound().build();
+    }
+
+
+
+
+
 }

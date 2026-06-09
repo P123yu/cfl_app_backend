@@ -20,8 +20,9 @@ public class MenteeToMentorFeedBack {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private Long menteeId;
-    @Lob
+
     @Column(columnDefinition = "TEXT")
     private String feedbackMessage;
     private LocalDate feedbackDate;
+    private Long year;
 }

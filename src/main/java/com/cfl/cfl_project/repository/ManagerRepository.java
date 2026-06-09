@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface ManagerRepository extends JpaRepository<Manager,Long> {
     Manager findByManagerEmail(String managerEmail);
+    Boolean existsByManagerEmail(String managerEmail);
+    Manager findByManagerId(Long managerId);
 }

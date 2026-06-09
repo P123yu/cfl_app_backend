@@ -14,23 +14,27 @@
 
         .container {
             background-color: #ffffff;
-            padding: 20px;
+            padding: 30px;
             max-width: 600px;
             margin: 0 auto;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
         }
 
         h1 {
             color: #0056b3;
-            font-size: 24px;
+            font-size: 28px;
             text-align: center;
-            margin-bottom: 20px;
+            font-weight: bold;
+            margin-bottom: 25px;
         }
 
         p {
             font-size: 16px;
             line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
         }
 
         table {
@@ -46,8 +50,8 @@
         th, td {
             padding: 10px;
             text-align: left;
-            word-wrap: break-word; /* Ensure long text wraps */
-            overflow-wrap: break-word; /* Support for older browsers */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         th {
@@ -63,7 +67,47 @@
             text-align: center;
             font-size: 14px;
             color: #777;
-            margin-top: 20px;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 15px;
+        }
+
+        .bold-text {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Responsive styling for small devices */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 22px;
+            }
+
+            p, table {
+                font-size: 14px;
+            }
+
+            .container {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .footer {
+                font-size: 12px;
+                padding-top: 10px;
+            }
+
+            table, th, td {
+                padding: 8px;
+            }
+
+            th {
+                font-size: 16px;
+            }
+
+            td {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -71,11 +115,13 @@
 <div class="container">
     <h1>Probation Extended</h1>
 
-    <p>Dear HR,</p>
-    <p>Considering current business deliverables, I am not available till   <span th:text="${date}"></span> we can schedule cfl probation ending discussion on  .</p>
+    <p>Dear <span class="bold-text" th:text="${hrName}"></span>,</p>
+
+    <p>Considering the current business deliverables, I am unavailable until <span class="bold-text" th:text="${date}"></span>. We can schedule <span class="bold-text" th:text="${cflName}"></span>'s probation confirmation discussion after this date.</p>
+
     <table>
         <tr>
-            <th>Goal Setting Status</th>
+            <th>Probation Confirmation Discussion Status</th>
             <th>Date</th>
         </tr>
         <tr>
@@ -85,7 +131,7 @@
     </table>
 
     <p>Best regards,</p>
-    <p th:text="${managerName}"></p>
+    <p class="bold-text" th:text="${managerName}"></p>
 
     <div class="footer">
         <p>&copy; CMS Computers. All rights reserved.</p>

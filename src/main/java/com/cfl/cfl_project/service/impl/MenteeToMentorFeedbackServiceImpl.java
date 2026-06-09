@@ -26,6 +26,7 @@ public class MenteeToMentorFeedbackServiceImpl implements MenteeToMentorFeedback
         menteeToMentorFeedBackObj.setFeedbackMessage(menteeToMentorFeedback.getFeedbackMessage());
         LocalDate date= LocalDate.now();
         menteeToMentorFeedBackObj.setFeedbackDate(date);
+        menteeToMentorFeedBackObj.setYear((long) date.getYear());
         return menteeToMentorFeedBackRepository.save(menteeToMentorFeedBackObj);
     }
 
@@ -39,16 +40,16 @@ public class MenteeToMentorFeedbackServiceImpl implements MenteeToMentorFeedback
 
 
     @Override
-    public  List<CustomMenteeToMentorFeedBack> getAllFeedBack() {
+    public  List<CustomMenteeToMentorFeedBack> getAllFeedBack(Long year) {
         List<CustomMenteeToMentorFeedBack>customMenteeToMentorFeedBackList=new ArrayList<>();
-        List<MenteeToMentorFeedBack> menteeToMentorFeedBackLists=menteeToMentorFeedBackRepository.findAll();
+        List<MenteeToMentorFeedBack> menteeToMentorFeedBackLists=menteeToMentorFeedBackRepository.findByYear(year);
         for(MenteeToMentorFeedBack menteeToMentorFeedBackObj :menteeToMentorFeedBackLists){
             CustomMenteeToMentorFeedBack customMenteeToMentorFeedBack=new CustomMenteeToMentorFeedBack();
             customMenteeToMentorFeedBack.setMenteeId(menteeToMentorFeedBackObj.getMenteeId());
             customMenteeToMentorFeedBack.setFeedbackMessage(menteeToMentorFeedBackObj.getFeedbackMessage());
             customMenteeToMentorFeedBack.setFeedbackDate(menteeToMentorFeedBackObj.getFeedbackDate());
             customMenteeToMentorFeedBack.setMenteeName(cflRepository.findByEmpId(menteeToMentorFeedBackObj.getMenteeId()).getCflFirstName());
-            customMenteeToMentorFeedBack.setMentorName(mentorRepository.findByMentorId(cflRepository.findByEmpId(menteeToMentorFeedBackObj.getMenteeId()).getMentorId()).getMentorName());
+            customMenteeToMentorFeedBack.setMentorName(cflRepository.findByEmpId(menteeToMentorFeedBackObj.getMenteeId()).getMentorName());
             customMenteeToMentorFeedBackList.add(customMenteeToMentorFeedBack);
         }
         return customMenteeToMentorFeedBackList;

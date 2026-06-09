@@ -28,7 +28,7 @@ public class Resume {
 //    @Column(name = "file_data", columnDefinition = "LONGBLOB")
 //    private byte[] resumeFileData;
 
-    @Lob
+
     @Column(name = "file_data", columnDefinition = "BYTEA")
     private byte[] resumeFileData;
 }

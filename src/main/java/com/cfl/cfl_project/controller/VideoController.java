@@ -20,7 +20,7 @@ public class VideoController {
     private VideoService videoService;
 
     @PostMapping("/create")
-    public ResponseEntity create(@RequestBody Video video){
+    public ResponseEntity<?> create(@RequestBody Video video){
         Video videoObj=videoService.create(video);
         if(videoObj!=null){
             return ResponseEntity.ok(videoObj);
@@ -33,7 +33,7 @@ public class VideoController {
 
 
     @GetMapping("/get/{year}")
-    public ResponseEntity create(@PathVariable String year){
+    public ResponseEntity<?> create(@PathVariable String year){
         List<Video> videoObj=videoService.getByYear(year);
         if(videoObj!=null){
             return ResponseEntity.ok(videoObj);

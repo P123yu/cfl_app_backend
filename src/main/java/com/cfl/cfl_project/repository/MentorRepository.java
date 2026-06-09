@@ -10,4 +10,6 @@ public interface MentorRepository extends JpaRepository<Mentor,Long> {
     Mentor findByMentorEmail(String mentorEmail);
     Mentor findByMentorId(Long mentorId);
 //    Mentor findByEmpId(Long empId);
+
+
 }

@@ -31,11 +31,15 @@ public class RewardsAndRecognition {
 //    @Column(columnDefinition = "LONGBLOB")
 //    private byte[] rewardImage;
 
-    @Lob
+
     @Column(columnDefinition = "BYTEA")
     private byte[] rewardImage;
 
     private LocalDate date;
 
     private String rewardRecognitionType;
+
+    @Transient
+    @Column(name = "file_data", columnDefinition = "BYTEA")
+    private byte[] fileData;
 }

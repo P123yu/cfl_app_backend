@@ -30,7 +30,7 @@ public class LogBook {
 //    @Column(name = "file_data", columnDefinition = "LONGBLOB")
 //    private byte[] logBookFileData;
 
-    @Lob
+
     @Column(name = "file_data", columnDefinition = "BYTEA")
     private byte[] logBookFileData;
 }

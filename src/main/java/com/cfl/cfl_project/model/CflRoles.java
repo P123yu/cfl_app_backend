@@ -18,7 +18,7 @@ public class CflRoles {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    @Lob
+//    @Lob
     @Column(columnDefinition = "TEXT")
     private String roleName;
     private Long year;

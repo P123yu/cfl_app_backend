@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -26,7 +27,7 @@ public class ResumeServiceImpl implements ResumeService {
         resume.setEmpId(empId);
         LocalDate date = LocalDate.now();
         resume.setDate(date);
-        LocalTime time= LocalTime.now();
+        LocalTime time= LocalTime.now().truncatedTo(ChronoUnit.SECONDS);;
         resume.setTime(time);
         resume.setResumeFileName(resumeFile.getOriginalFilename());
         resume.setResumeFileData(resumeFile.getBytes());

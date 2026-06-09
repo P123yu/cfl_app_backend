@@ -29,9 +29,14 @@ public class Manager {
 //    @Column(name = "manager_file_data", nullable = false, columnDefinition = "LONGBLOB")
 //    private byte[] managerFileData;
 
-    @Lob
-    @Column(name = "manager_file_data", nullable = false, columnDefinition = "BYTEA")
+
+    @Column(name = "manager_file_data", columnDefinition = "BYTEA")
     private byte[] managerFileData;
+
+    @Column(name = "otp")
+    private String otp;
+
+    private String managerScreenTime;
 
 
 }

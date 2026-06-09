@@ -14,5 +14,5 @@ public interface MentorToMenteeFeedBackService {
     MentorToMenteeFeedBack createFeedBack(MentorToMenteeFeedBack mentorToMenteeFeedBack);
 
     // get feedback
-    List<MentorToMenteeFeedBack> getAllFeedBack();
+    List<MentorToMenteeFeedBack> getAllFeedBack(Long year);
 }

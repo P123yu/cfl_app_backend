@@ -3,6 +3,7 @@ package com.cfl.cfl_project.service.impl;
 
 import com.cfl.cfl_project.model.Refresh;
 import com.cfl.cfl_project.model.Register;
+import com.cfl.cfl_project.model.Role;
 import com.cfl.cfl_project.repository.RefreshRepository;
 import com.cfl.cfl_project.repository.RegisterRepository;
 import com.cfl.cfl_project.service.RefreshService;
@@ -23,20 +24,22 @@ public class RefreshServiceImpl implements RefreshService {
     private RefreshRepository refreshRepository;
 
     @Override
-    public Refresh createRefreshToken(String userName) {
-        System.out.println("Refresh token created for user: " + userName);
+    public Refresh createRefreshToken(String userName, Role role) {
+        System.out.println("Refresh token created for user: " + userName+role+"role");
 
-        Register register = registerRepository.findByUserName(userName);
+        Register register = registerRepository.findByUserNameAndRole(userName,role);
+
+        System.out.println(register+"register refresh ");
         Refresh refresh = register.getRefresh();
 
         if (refresh == null) {
             System.out.println("start here");
-            System.out.println(registerRepository.findByUserName(userName));
+            System.out.println(registerRepository.findByUserNameAndRole(userName,role));
 
             refresh = new Refresh();
             refresh.setRefreshToken(UUID.randomUUID().toString());
 //            refresh.setExpiry(Instant.now().plusMillis(3*30*24*60*60*1000));
-            refresh.setExpiry(Instant.now().plus(180, ChronoUnit.DAYS));
+            refresh.setExpiry(Instant.now().plus(720, ChronoUnit.DAYS));
 
             refresh.setRegister(register);
         } else {

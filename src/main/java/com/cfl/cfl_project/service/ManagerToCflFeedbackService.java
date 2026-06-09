@@ -14,5 +14,5 @@ public interface ManagerToCflFeedbackService {
     ManagerToCflFeedBack createFeedBack(ManagerToCflFeedBack managerToCflFeedBack);
 
     // get feedback
-    List<ManagerToCflFeedBack> getAllFeedBack();
+    List<ManagerToCflFeedBack> getAllFeedBack(Long year);
 }

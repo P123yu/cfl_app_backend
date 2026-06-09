@@ -23,8 +23,9 @@ public class MentorToMenteeFeedBack {
     private String menteeName;
     private String mentorName;
     private String mentorEmail;
-    @Lob
+
     @Column(columnDefinition = "TEXT")
     private String feedbackMessage;
     private LocalDate feedbackDate;
+    private Long year;
 }

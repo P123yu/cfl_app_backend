@@ -19,15 +19,13 @@ public class ManagerRating {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long Id;
     private Long empId;
-    private String internal1;
-    private String internal2;
-    private String internal3;
-    private String project1;
-    private String project2;
-    private String project3;
     private String talentLevel;
     private String potentialLevel;
     private String performanceLevel;
-    private String quarter;
+    private String annual;
+    private Long year;
+
+    @Transient
+    private String empName;
 
 }

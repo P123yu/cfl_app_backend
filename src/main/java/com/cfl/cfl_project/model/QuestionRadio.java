@@ -25,4 +25,5 @@ public class QuestionRadio {
     private String question4;
     private String question5;
     private String quarter;
+    private Long year;
 }

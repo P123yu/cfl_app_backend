@@ -1,6 +1,8 @@
 package com.cfl.cfl_project.service.impl;
 
+import com.cfl.cfl_project.model.Cfl;
 import com.cfl.cfl_project.model.QuestionRadio;
+import com.cfl.cfl_project.repository.CflRepository;
 import com.cfl.cfl_project.repository.QuestionRadioRepository;
 import com.cfl.cfl_project.service.QuestionRadioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +35,33 @@ public class QuestionRadioServiceImpl implements QuestionRadioService {
     }
 
 
+//    @Override
+//    public QuestionRadio create(QuestionRadio questionRadio) {
+//        QuestionRadio questionRadioObj = new QuestionRadio();
+//        questionRadioObj.setEmpId(questionRadio.getEmpId());
+//        questionRadioObj.setQuestion1(questionRadio.getQuestion1());
+//        questionRadioObj.setQuestion2(questionRadio.getQuestion2());
+//        questionRadioObj.setQuestion3(questionRadio.getQuestion3());
+//        questionRadioObj.setQuestion4(questionRadio.getQuestion4());
+//        questionRadioObj.setQuestion5(questionRadio.getQuestion5());
+//        questionRadioObj.setQuarter(getQuarter());
+//
+//        Long year= Long.valueOf(LocalDate.now().getYear());
+//        if(getQuarter().equalsIgnoreCase("Q4")){
+//            year-=1;
+//        }
+//        questionRadioObj.setYear(year);
+//        return questionRadioRepository.save(questionRadioObj);
+//    }
+
+
+    @Autowired
+    private CflRepository cflRepository;
+
     @Override
     public QuestionRadio create(QuestionRadio questionRadio) {
+
+        Cfl cfl=cflRepository.findByEmpId(questionRadio.getEmpId());
         QuestionRadio questionRadioObj = new QuestionRadio();
         questionRadioObj.setEmpId(questionRadio.getEmpId());
         questionRadioObj.setQuestion1(questionRadio.getQuestion1());
@@ -42,12 +69,40 @@ public class QuestionRadioServiceImpl implements QuestionRadioService {
         questionRadioObj.setQuestion3(questionRadio.getQuestion3());
         questionRadioObj.setQuestion4(questionRadio.getQuestion4());
         questionRadioObj.setQuestion5(questionRadio.getQuestion5());
-        questionRadioObj.setQuarter(getQuarter());
+//        questionRadioObj.setQuarter(getQuarter());
+
+        Long year= Long.valueOf(LocalDate.now().getYear());
+
+        if(Integer.parseInt(cfl.getYear())<LocalDate.now().getYear()){
+            questionRadioObj.setQuarter("annual");
+            questionRadioObj.setYear(Long.valueOf(cfl.getYear()));
+        }
+
+
+
+
+//        if(Integer.parseInt(cfl.getYear())<LocalDate.now().getYear()){
+//            questionRadioObj.setQuarter("annual");
+//        }
+//        else{
+////            questionRadioObj.setQuarter(getQuarter());
+//        if(getQuarter().equalsIgnoreCase("Q4")){
+//            year-=1;
+//        }
+//        }
+
+//        questionRadioObj.setYear(year);
+
         return questionRadioRepository.save(questionRadioObj);
     }
 
+//    @Override
+//    public QuestionRadio getByEmpIdAndQuarter(Long empId,String quarter) {
+//        return questionRadioRepository.findByEmpIdAndQuarter(empId,quarter);
+//    }
+
     @Override
-    public QuestionRadio getByEmpIdAndQuarter(Long empId,String quarter) {
-        return questionRadioRepository.findByEmpIdAndQuarter(empId,quarter);
+    public QuestionRadio getByEmpId(Long empId) {
+        return questionRadioRepository.findByEmpId(empId);
     }
 }

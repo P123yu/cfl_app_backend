@@ -25,7 +25,7 @@ public class Memories {
 //    @Column(name = "file_data", columnDefinition = "LONGBLOB", nullable = true)
 //    private byte[] fileData;
 
-    @Lob
+
     @Column(name = "file_data", columnDefinition = "BYTEA", nullable = true)
     private byte[] fileData;
     private Long year;

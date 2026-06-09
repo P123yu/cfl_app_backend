@@ -27,9 +27,21 @@ public class QuestionRadioController {
         }
     }
 
-    @GetMapping("/get/{empId}/{quarter}")
-    public ResponseEntity<?>getByEmpId(@PathVariable Long empId,@PathVariable String quarter){
-        QuestionRadio questionRadioObj=questionRadioService.getByEmpIdAndQuarter(empId,quarter);
+//    @GetMapping("/get/{empId}/{quarter}")
+//    public ResponseEntity<?>getByEmpId(@PathVariable Long empId,@PathVariable String quarter){
+//        QuestionRadio questionRadioObj=questionRadioService.getByEmpIdAndQuarter(empId,quarter);
+//        if(questionRadioObj !=null){
+//            return ResponseEntity.ok(questionRadioObj);
+//        }
+//        else{
+//            return ResponseEntity.status(400).body("Failed to get QuestionRadio");
+//        }
+//    }
+
+
+    @GetMapping("/get/{empId}")
+    public ResponseEntity<?>getByEmpId(@PathVariable Long empId){
+        QuestionRadio questionRadioObj=questionRadioService.getByEmpId(empId);
         if(questionRadioObj !=null){
             return ResponseEntity.ok(questionRadioObj);
         }

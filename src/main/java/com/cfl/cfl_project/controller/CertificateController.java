@@ -4,6 +4,7 @@ import com.cfl.cfl_project.model.Certificate;
 import com.cfl.cfl_project.model.LogBook;
 import com.cfl.cfl_project.service.CertificateService;
 import com.cfl.cfl_project.service.LogBookService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/certificate")
 @CrossOrigin("*")
+@Slf4j
 public class CertificateController {
 
     @Autowired
@@ -22,6 +24,7 @@ public class CertificateController {
 
     @PostMapping("/upload")
     private ResponseEntity<?> upload(@RequestParam Long empId, @RequestPart MultipartFile certificateFile)throws IOException {
+        log.info("empId: {}, certificateFile: {}", empId, certificateFile);
         Certificate certificate = certificateService.uploadCertificate(empId, certificateFile);
         if(certificate!=null){
             return ResponseEntity.ok(certificate);

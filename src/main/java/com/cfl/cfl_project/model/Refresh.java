@@ -24,4 +24,5 @@ public class Refresh {
     @JoinColumn(name = "user_id", referencedColumnName = "userId")
     private  Register register;
 
+
 }

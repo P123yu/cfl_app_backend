@@ -1,5 +1,7 @@
 package com.cfl.cfl_project.controller;
 
+import com.cfl.cfl_project.dto.CflLogBookCflTableDTO;
+import com.cfl.cfl_project.dto.CflSkillCflTableDTO;
 import com.cfl.cfl_project.model.LogBook;
 import com.cfl.cfl_project.service.LogBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,18 @@ public class LogBookController {
         }
         else{
             return ResponseEntity.status(404).body("No logbook found for this employee");
+        }
+    }
+
+
+    @GetMapping("/downloadLogBookReport")
+    public ResponseEntity<?> downloadLogBookReport(){
+        List<CflLogBookCflTableDTO> cflLogBookCflTableDTOS=logBookService.downloadLogBookReport();
+        if(!cflLogBookCflTableDTOS.isEmpty()){
+            return ResponseEntity.ok(cflLogBookCflTableDTOS);
+        }
+        else{
+            return ResponseEntity.status(400).body("Failed to get all cflLogBookCflTableDTOS ");
         }
     }
 }

@@ -18,12 +18,13 @@ public class SixtyDaysGoalsController {
     @Autowired
     private SixtyDaysGoalsService sixtyDaysGoalsService;
 
-    @PostMapping("/emp/{empId}")
+    @PostMapping("/emp/{empId}/{quarter}")
     public ResponseEntity<?> createSixtyDaysGoals(
             @PathVariable Long empId,
+            @PathVariable String quarter,
             @RequestBody List<SixtyDaysGoals> sixtyDaysGoals) {
 
-        List<SixtyDaysGoals> createdGoals = sixtyDaysGoalsService.createSixtyDaysGoals(empId, sixtyDaysGoals);
+        List<SixtyDaysGoals> createdGoals = sixtyDaysGoalsService.createSixtyDaysGoals(empId, quarter, sixtyDaysGoals);
         if(!createdGoals.isEmpty()){
             return new ResponseEntity<>(createdGoals, HttpStatus.CREATED);
         }
@@ -40,4 +41,20 @@ public class SixtyDaysGoalsController {
         }
         return new ResponseEntity<>(goals, HttpStatus.OK);
     }
+
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updateSixtyDaysGoals(@RequestBody List<SixtyDaysGoals> sixtyDaysGoals) {
+
+        List<SixtyDaysGoals> updatedGoals = sixtyDaysGoalsService.updateSixtyDaysGoals(sixtyDaysGoals);
+        if(!updatedGoals.isEmpty()){
+            return new ResponseEntity<>(updatedGoals, HttpStatus.CREATED);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
 }

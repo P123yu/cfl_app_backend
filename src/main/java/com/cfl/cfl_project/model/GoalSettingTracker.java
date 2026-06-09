@@ -22,4 +22,7 @@ public class GoalSettingTracker {
     private Boolean responseSendByManagerToCfl;
     private Boolean responseSendByManagerToHr;
     private String quarter;
+
+    private String cflName;
+    private Long year;
 }

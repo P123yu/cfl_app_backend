@@ -1,95 +1,97 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Mentor Response</title>
     <style>
-        .email-container {
+        body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333333;
-        }
-        .email-header {
-            background-color: #4CAF50;
+            background-color: #f4f4f9; /* Light background for contrast */
+            margin: 0;
             padding: 20px;
-            text-align: center;
-            color: white;
         }
+
+        .email-container {
+            background-color: #ffffff;
+            padding: 30px;
+            max-width: 650px;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+
+        .email-header {
+            background-color: blue; /* Green background */
+            color: white;
+            padding: 25px;
+            border-radius: 10px 10px 0 0; /* Rounded top corners */
+            text-align: center;
+        }
+
+        .email-header h2 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
         .email-body {
             padding: 20px;
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
         }
+
+        .email-body p {
+            margin-bottom: 20px;
+        }
+
         .email-footer {
             margin-top: 30px;
             text-align: center;
-            font-size: 12px;
-            color: #777777;`
+            font-size: 14px;
+            color: #777777;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 20px;
         }
+
         a {
             color: #4CAF50;
             text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Responsive styling for small screens */
+        @media screen and (max-width: 600px) {
+            .email-container {
+                padding: 20px;
+                width: 90%;
+            }
+
+            .email-header h2 {
+                font-size: 22px; /* Adjusted font size */
+            }
+
+            .email-body {
+                font-size: 14px; /* Slightly smaller text for mobile */
+            }
         }
     </style>
 </head>
 <body>
 <div class="email-container">
     <div class="email-header">
-        <h2>Mentor Response</h2>
+        <h2>Mentoring Session  <span th:text="${status}"></span></h2>
     </div>
     <div class="email-body">
-        <p>Dear Mentee </p>  <p th:text="${cflName}"></p>
+        <p>Dear <span th:text="${cflName}"></span>,</p>
+
         <p th:text="${message}"></p>
-        <p>Best Regards,<br/> Mentor: <p th:text="${mentorName}"></p>
+
+        <p>Best Regards,<br/><strong>Human Resource Department</strong></p>
     </div>
     <div class="email-footer">
-        <p>&copy;  CMS COMPUTERS. All rights reserved.</p>
+        <p>&copy; CMS COMPUTERS. All rights reserved.</p>
     </div>
 </div>
 </body>
 </html>
-
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <title>Mentor Response</title>-->
-<!--    <style>-->
-<!--        .email-container {-->
-<!--            font-family: Arial, sans-serif;-->
-<!--            line-height: 1.6;-->
-<!--            color: #333333;-->
-<!--        }-->
-<!--        .email-header {-->
-<!--            background-color: #4CAF50;-->
-<!--            padding: 20px;-->
-<!--            text-align: center;-->
-<!--            color: white;-->
-<!--        }-->
-<!--        .email-body {-->
-<!--            padding: 20px;-->
-<!--        }-->
-<!--        .email-footer {-->
-<!--            margin-top: 30px;-->
-<!--            text-align: center;-->
-<!--            font-size: 12px;-->
-<!--            color: #777777;-->
-<!--        }-->
-<!--    </style>-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="email-container">-->
-<!--    <div class="email-header">-->
-<!--        <h2>Mentor Response</h2>-->
-<!--    </div>-->
-<!--    <div class="email-body">-->
-<!--        <p>Dear Mentee,</p>-->
-<!--        <p>This is the message from your mentor.</p>-->
-<!--        <p th:text="${message}"></p>-->
-<!--        <p>Best Regards,<br/>Your Mentor</p>-->
-<!--    </div>-->
-<!--    <div class="email-footer">-->
-<!--        <p>&copy; 2024 Your Company Name. All rights reserved.</p>-->
-<!--    </div>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->

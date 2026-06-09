@@ -35,13 +35,14 @@ public class MentorToMenteeFeedBackServiceImpl implements MentorToMenteeFeedBack
         mentorToMenteeFeedBackObj.setFeedbackMessage(mentorToMenteeFeedBack.getFeedbackMessage());
         LocalDate date= LocalDate.now();
         mentorToMenteeFeedBackObj.setFeedbackDate(date);
+        mentorToMenteeFeedBackObj.setYear((long) date.getYear());
         return mentorToMenteeFeedBackRepository.save(mentorToMenteeFeedBackObj);
     }
 
 
 
     @Override
-    public List<MentorToMenteeFeedBack> getAllFeedBack() {
+    public List<MentorToMenteeFeedBack> getAllFeedBack(Long year) {
         return mentorToMenteeFeedBackRepository.findAll();
     }
 }

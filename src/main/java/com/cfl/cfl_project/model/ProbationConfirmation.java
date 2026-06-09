@@ -1,9 +1,6 @@
 package com.cfl.cfl_project.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,6 +39,7 @@ public class ProbationConfirmation {
     private String dropdown9;
     private String dropdown10;
 
+    @Column(columnDefinition = "TEXT")
     private String remark3;
 
     private String dropdown11;
@@ -55,6 +53,7 @@ public class ProbationConfirmation {
     private String dropdown19;
     private String dropdown20;
 
+    @Column(columnDefinition = "TEXT")
     private String remark6;
 
     private String confirmation;
@@ -67,4 +66,6 @@ public class ProbationConfirmation {
     private String hrRepresentativeSignature;
 
     private String status;
+
+    private Long year;
 }

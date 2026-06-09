@@ -20,13 +20,14 @@ public class CflSkill {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private Long empId;
-    @Lob
+    private Long year;
+
     @Column(columnDefinition = "TEXT")
     private String primarySkills;
-    @Lob
+
     @Column(columnDefinition = "TEXT")
     private String secondarySkills;
-    @Lob
+
     @Column(columnDefinition = "TEXT")
     private String otherSkills;
     private String quarter;

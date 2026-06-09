@@ -1,6 +1,7 @@
 package com.cfl.cfl_project.controller;
 
 import com.cfl.cfl_project.model.NinetyDaysGoals;
+import com.cfl.cfl_project.model.SixtyDaysGoals;
 import com.cfl.cfl_project.model.ThirtyDaysGoals;
 import com.cfl.cfl_project.service.NinetyDaysGoalsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,13 @@ public class NinetyDaysGoalsController {
     @Autowired
     private NinetyDaysGoalsService ninetyDaysGoalsService;
 
-    @PostMapping("/emp/{empId}")
+    @PostMapping("/emp/{empId}/{quarter}")
     public ResponseEntity<?> createNinetyDaysGoals(
             @PathVariable Long empId,
+            @PathVariable String quarter,
             @RequestBody List<NinetyDaysGoals> ninetyDaysGoals) {
 
-        List<NinetyDaysGoals> createdGoals = ninetyDaysGoalsService.createNinetyDaysGoals(empId, ninetyDaysGoals);
+        List<NinetyDaysGoals> createdGoals = ninetyDaysGoalsService.createNinetyDaysGoals(empId, quarter, ninetyDaysGoals);
         if(!createdGoals.isEmpty()){
             return new ResponseEntity<>(createdGoals, HttpStatus.CREATED);
         }
@@ -39,5 +41,17 @@ public class NinetyDaysGoalsController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(goals, HttpStatus.OK);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updateNinetyDaysGoals(@RequestBody List<NinetyDaysGoals> ninetyDaysGoals) {
+
+        List<NinetyDaysGoals> updatedGoals = ninetyDaysGoalsService.updateNinetyDaysGoals(ninetyDaysGoals);
+        if(!updatedGoals.isEmpty()){
+            return new ResponseEntity<>(updatedGoals, HttpStatus.CREATED);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

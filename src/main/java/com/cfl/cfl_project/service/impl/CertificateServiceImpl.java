@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -27,7 +29,7 @@ public class CertificateServiceImpl implements CertificateService {
         certificate.setEmpId(empId);
         LocalDate date = LocalDate.now();
         certificate.setDate(date);
-        LocalTime time= LocalTime.now();
+        LocalTime time= LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
         certificate.setTime(time);
         certificate.setCertificateFileName(certificateFile.getOriginalFilename());
         certificate.setCertificateFileData(certificateFile.getBytes());

@@ -1,10 +1,7 @@
 package com.cfl.cfl_project.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,16 +9,19 @@ import java.util.Set;
 
 @Entity
 @Table(name="mentor_table")
+
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Mentor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String empId;
+    //private String empId;
     private Long mentorId;
     private String mentorName;
     private String mentorEmail;
@@ -35,9 +35,13 @@ public class Mentor {
 //    private byte[] mentorFileData;
 
 
-    @Lob
-    @Column(name = "mentor_file_data", columnDefinition = "BYTEA", nullable = false)
+    @Column(name = "mentor_file_data", columnDefinition = "BYTEA")
     private byte[] mentorFileData;
+
+    @Column(name = "otp")
+    private String otp;
+
+    private String mentorScreenTime;
 
 
 }

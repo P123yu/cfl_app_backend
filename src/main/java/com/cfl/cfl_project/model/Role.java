@@ -5,4 +5,6 @@ public enum Role {
     HR,
     MENTOR,
     CFL,
+
+    ADMIN
 }

@@ -9,8 +9,11 @@ import java.util.List;
 @Service
 public interface SixtyDaysGoalsService {
     // create
-    List<SixtyDaysGoals> createSixtyDaysGoals(Long empId, List<SixtyDaysGoals>sixtyDaysGoals);
+    List<SixtyDaysGoals> createSixtyDaysGoals(Long empId,String quarter, List<SixtyDaysGoals>sixtyDaysGoals);
 
     // get
     List<SixtyDaysGoals>getSixtyDaysGoalsByEmpIdAndQuarter(Long empId,String quarter);
+
+    // update
+    List<SixtyDaysGoals> updateSixtyDaysGoals(List<SixtyDaysGoals> sixtyDaysGoals);
 }

@@ -1,6 +1,9 @@
+
+
 package com.cfl.cfl_project.config;
 
 import com.cfl.cfl_project.jwt.JwtFilter;
+
 import com.cfl.cfl_project.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +14,7 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,25 +33,21 @@ public class SpringSecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
 
+
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, JwtFilter jwtFilter) throws Exception {
         return httpSecurity.cors(cors->cors.configurationSource(corsConfigurationSource()))
-                .csrf(csrf -> csrf.disable())
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
-                                .requestMatchers("register","login","getMail/{userName}",
-                                        "mentor/**","cfl/**","refresh/**",
-                                        "jwtWithRefreshToken/**","accept/**","Goals/**","cflSkill/**",
-                                        "logbook/**","manager/**","managerRating/**","certificate/**",
-                                        "menteeToMentorFeedBack/**","goalSettingTracker/**","probationTracker/**",
-                                "questionRadio/**","memories/**","resume/**","videos/**","cflRoles/**",
-                                "rewardsAndRecognition/**","probationConfirmation/**","mentorToMenteeFeedBack/**"
-                                ,"managerToCflFeedBack/**").permitAll()
-                                .anyRequest().authenticated()
+                                .anyRequest().permitAll()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
+
 
     // convert plain text password into Bcryptpassword
 
@@ -87,15 +87,24 @@ public class SpringSecurityConfig {
 
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource(){
-        CorsConfiguration corsConfiguration=new CorsConfiguration();
-        corsConfiguration.addAllowedHeader("*");
-        corsConfiguration.addAllowedMethod("*");
-        corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setAllowedOrigins(List.of(
+                "http://localhost:3001",
+                "http://localhost:5173",
+                "http://localhost:3000",
+                "http://43.204.42.69:9049",
+                "http://localhost:8888",
+                "http://localhost"
+        ));
+        corsConfiguration.addAllowedMethod("*");  // Allow all HTTP methods (GET, POST, etc.)
+        corsConfiguration.addAllowedHeader("*");  // Allow all headers
+        corsConfiguration.setMaxAge(3600L);  // Cache the CORS configuration for 3600 seconds
 
-        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource=new UrlBasedCorsConfigurationSource();
-        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**",corsConfiguration);
-        return urlBasedCorsConfigurationSource;
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return source;
     }
+
 }

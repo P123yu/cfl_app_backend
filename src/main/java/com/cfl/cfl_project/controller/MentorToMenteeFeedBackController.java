@@ -29,9 +29,9 @@ public class MentorToMenteeFeedBackController{
     }
 
 
-    @GetMapping("/get")
-    public ResponseEntity<?> getAll(){
-        List<MentorToMenteeFeedBack>mentorToMenteeFeedBacks= mentorToMenteeFeedBackService.getAllFeedBack();
+    @GetMapping("/get/{year}")
+    public ResponseEntity<?> getAll(@PathVariable Long year){
+        List<MentorToMenteeFeedBack>mentorToMenteeFeedBacks= mentorToMenteeFeedBackService.getAllFeedBack(year);
         if(!mentorToMenteeFeedBacks.isEmpty()){
             return ResponseEntity.ok(mentorToMenteeFeedBacks);
         }

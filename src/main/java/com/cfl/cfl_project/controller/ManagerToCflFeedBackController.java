@@ -20,7 +20,6 @@ public class ManagerToCflFeedBackController{
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody ManagerToCflFeedBack managerToCflFeedBack){
-        System.out.println(String.valueOf(managerToCflFeedBack.getManagerEmail()));
         ManagerToCflFeedBack managerToCflFeedBackObj=managerToCflFeedbackService.createFeedBack(managerToCflFeedBack);
         if(managerToCflFeedBackObj!=null){
             return ResponseEntity.ok(managerToCflFeedBackObj);
@@ -31,9 +30,9 @@ public class ManagerToCflFeedBackController{
     }
 
 
-    @GetMapping("/get")
-    public ResponseEntity<?> getAll(){
-        List<ManagerToCflFeedBack> managerToCflFeedBacks= managerToCflFeedbackService.getAllFeedBack();
+    @GetMapping("/get/{year}")
+    public ResponseEntity<?> getAll(@PathVariable Long year){
+        List<ManagerToCflFeedBack> managerToCflFeedBacks= managerToCflFeedbackService.getAllFeedBack(year);
         if(!managerToCflFeedBacks.isEmpty()){
             return ResponseEntity.ok(managerToCflFeedBacks);
         }

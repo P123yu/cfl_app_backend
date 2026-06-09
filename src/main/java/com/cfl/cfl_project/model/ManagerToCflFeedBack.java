@@ -21,8 +21,9 @@ public class ManagerToCflFeedBack {
     private String menteeName;
     private String managerName;
     private String managerEmail;
-    @Lob
+
     @Column(columnDefinition = "TEXT")
     private String feedbackMessage;
     private LocalDate feedbackDate;
+    private Long year;
 }
